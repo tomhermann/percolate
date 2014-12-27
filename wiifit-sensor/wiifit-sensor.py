@@ -39,7 +39,7 @@ def main():
       payload['weight'] = calcweight(wiimote.state['balance'], named_calibration) / 100.0
       
       response = requests.post('http://crazypowerful.com/percolate/pot', data=json.dumps(payload), headers={'content-type' : 'application/json'})
-      print "response: (%d),  data: %s" % ( response.status_code, payload)
+      print "response: (%d), data: %s" % ( response.status_code, payload)
       sleep(0.5)
    
    wiimote.close()
@@ -53,12 +53,10 @@ def calcweight( readings, calibrations ):
     for sensor in ('right_top', 'right_bottom', 'left_top', 'left_bottom'):
         reading = readings[sensor]
         calibration = calibrations[sensor]
-        #if reading < calibration[0]:
-        #   print "Warning, %s reading below lower calibration value" % sensor
-        if reading > calibration[2]:
-            print "Warning, %s reading above upper calibration value" % sensor
+
         # 1700 appears to be the step the calibrations are against.
         # 17kg per sensor is 68kg, 1/2 of the advertised Japanese weight limit.
+
         if reading < calibration[1]:
             weight += 1700 * (reading - calibration[0]) / (calibration[1] - calibration[0])
         else:

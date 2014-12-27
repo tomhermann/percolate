@@ -42,11 +42,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile('joda-time:joda-time:2.6')
-	compile('javax.inject:javax.inject:1')
-	
-	compile("com.h2database:h2")
-	
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile('javax.inject:javax.inject:1')
+    compile("com.h2database:h2")
+    
+	runtime('com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.4')
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

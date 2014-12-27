@@ -6,10 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 public class Reading {
@@ -17,8 +14,7 @@ public class Reading {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String deviceId;
-	@DateTimeFormat(iso=ISO.DATE_TIME)
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+	@CreatedDate
 	private DateTime timestamp;
 	private Double weight;
 

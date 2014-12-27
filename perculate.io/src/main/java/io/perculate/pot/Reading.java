@@ -5,17 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.joda.time.DateTime;
-import org.springframework.data.annotation.CreatedDate;
-
 @Entity
-public class Reading {
+public class Reading extends AbstractTimestampEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String deviceId;
-	@CreatedDate
-	private DateTime timestamp;
 	private Double weight;
 
 	public Long getId() {
@@ -34,14 +29,6 @@ public class Reading {
 		this.deviceId = deviceId;
 	}
 
-	public DateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(DateTime timestamp) {
-		this.timestamp = timestamp;
-	}
-
 	public Double getWeight() {
 		return weight;
 	}
@@ -52,6 +39,7 @@ public class Reading {
 
 	@Override
 	public String toString() {
-		return "Reading [id=" + id + ", deviceId=" + deviceId + ", timestamp=" + timestamp + ", weight=" + weight + "]";
+		return "Reading [id=" + id + ", deviceId=" + deviceId + ", weight=" + weight + "]";
 	}
+	
 }

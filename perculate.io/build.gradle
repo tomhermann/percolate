@@ -41,6 +41,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-mobile")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile('joda-time:joda-time:2.6')
 	compile('javax.inject:javax.inject:1')
 	
 	compile("com.h2database:h2")

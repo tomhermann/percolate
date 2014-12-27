@@ -5,13 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.joda.time.DateTime;
+
 @Entity
 public class Reading {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String deviceId;
-	private String timestamp;
+	private DateTime timestamp;
 	private Double weight;
 
 	public Long getId() {
@@ -30,11 +32,11 @@ public class Reading {
 		this.deviceId = deviceId;
 	}
 
-	public String getTimestamp() {
+	public DateTime getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(DateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 

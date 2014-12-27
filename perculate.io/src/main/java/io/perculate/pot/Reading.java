@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.data.jpa.domain.AbstractAuditable;
+
 @Entity
-public class Reading extends AbstractTimestampEntity {
+public class Reading extends AbstractAuditable<Reading,Long> {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -36,10 +39,9 @@ public class Reading extends AbstractTimestampEntity {
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Reading [id=" + id + ", deviceId=" + deviceId + ", weight=" + weight + "]";
 	}
-	
 }

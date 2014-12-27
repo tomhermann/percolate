@@ -32,7 +32,7 @@ def main():
       payload['timestamp'] = time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime()) #iso8601-esque
       payload['weight'] = calcweight(wiimote.state['balance'], balance_calibration) / 100.0
       
-      response = requests.post('http://crazypowerful.com/percolate/pot', data=json.dumps(payload), headers={'content-type' : 'application/json'})
+      response = requests.post('http://crazypowerful.com/perculate/readings', data=json.dumps(payload), headers={'content-type' : 'application/json'})
       print "response: (%d), data: %s" % ( response.status_code, payload)
       sleep(0.5)
    

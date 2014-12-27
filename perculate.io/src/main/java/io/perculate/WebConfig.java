@@ -12,4 +12,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/error").setViewName("error");
 	}
+	
 }

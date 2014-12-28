@@ -11,6 +11,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.google.common.base.Objects;
+
 @Entity
 public class Reading implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -61,7 +63,11 @@ public class Reading implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reading [id=" + id + ", deviceId=" + deviceId + ", weight="
-				+ weight + ", creationDate=" + getCreationDate() + "]";
+		return Objects.toStringHelper(this)
+				.add("id", id)
+				.add("creationDate", creationDate)
+				.add("deviceId", deviceId)
+				.add("weight", weight)
+			.toString();
 	}
 }

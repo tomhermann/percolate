@@ -10,6 +10,7 @@ buildscript {
     }
 }
 
+apply from: 'https://raw.githubusercontent.com/tomhermann/gradle-scripts/master/sources-javadoc.gradle'
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'

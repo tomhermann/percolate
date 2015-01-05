@@ -30,9 +30,11 @@ def main():
       payload = {}
       payload['id'] = '1'
       payload['weight'] = calcweight(wiimote.state['balance'], balance_calibration) / 100.0
-      
-      response = requests.post('http://crazypowerful.com/perculate/readings', data=json.dumps(payload), headers={'content-type' : 'application/json'})
-      print "response: (%d), data: %s" % ( response.status_code, payload)
+      try:
+         response = requests.post('http://crazypowerful.com/perculate/readings', data=json.dumps(payload), headers={'content-type' : 'application/json'})
+      except ConnectionError:
+         print "Connection Error"
+	  print "response: (%d), data: %s" % ( response.status_code, payload)
       sleep(0.5)
    
    wiimote.close()

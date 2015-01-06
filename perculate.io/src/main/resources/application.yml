@@ -1,0 +1,13 @@
+# See http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-yaml
+
+spring:
+    profiles:
+        active: development
+server:
+    contextPath: /perculate
+---
+
+spring:
+    profiles: development
+    thymeleaf:
+        cache: false

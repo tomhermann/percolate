@@ -3,6 +3,7 @@ package io.perculate.pot;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,11 @@ public class Reading implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String deviceId;
+	@Column(nullable = false)
 	private Double weight;
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 

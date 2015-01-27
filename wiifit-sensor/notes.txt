@@ -1,0 +1,11 @@
+~1.3 empty (no plunger)
+~3.3 full (no plunger)
+
+-3 minus 1 cup (plunger)
+-2.6 minus 2 cups (plunger)
+-2.3 minus 3 cups (plunger)
+-1.9 minus 4 cups (plunger)
+-1.5 minus 5 cups (plunger)
+
+less than 6 cups back to empty
+weight goes over 10 when pressing

@@ -1,4 +1,4 @@
-package io.perculate.pot;
+package io.perculate.readings;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,8 +21,6 @@ public class Reading implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(nullable = false)
-	private String deviceId;
-	@Column(nullable = false)
 	private Double weight;
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,14 +37,6 @@ public class Reading implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getDeviceId() {
-		return deviceId;
-	}
-
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
 	}
 
 	public Double getWeight() {
@@ -70,7 +60,6 @@ public class Reading implements Serializable {
 		return Objects.toStringHelper(this)
 				.add("id", id)
 				.add("creationDate", creationDate)
-				.add("deviceId", deviceId)
 				.add("weight", weight)
 			.toString();
 	}

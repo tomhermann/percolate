@@ -1,9 +1,9 @@
-package io.perculate.pot;
+package io.perculate.readings;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import io.perculate.PerculateWebappApplication;
-
-import java.util.UUID;
+import io.perculate.readings.Reading;
+import io.perculate.readings.ReadingRepository;
 
 import javax.inject.Inject;
 
@@ -24,24 +24,10 @@ public class ReadingRepositoryTest {
 	@Test
 	public void onSavePopulateCreationDate() {
 		Reading entity = new Reading();
-		entity.setDeviceId(UUID.randomUUID().toString());
 		entity.setWeight(42.0D);
 		
 		Reading save = readingRepository.save(entity);
 
 		assertNotNull(save.getCreationDate());
-	}
-
-	@Test
-	public void onSavePopulateId() {
-		Reading entity = new Reading();
-		String deviceId = UUID.randomUUID().toString();
-		entity.setDeviceId(deviceId);
-		entity.setWeight(42.0D);
-		
-		Reading save = readingRepository.save(entity);
-
-		assertNotNull(save.getId());
-		assertEquals(deviceId, save.getDeviceId());
 	}
 }

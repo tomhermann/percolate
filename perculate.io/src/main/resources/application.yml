@@ -3,11 +3,24 @@
 spring:
     profiles:
         active: development
+    freemarker:
+        cache: false
+    jpa:
+        hibernate:
+            ddl-auto: create
+
 server:
     contextPath: /perculate
 ---
 
 spring:
     profiles: development
-    thymeleaf:
-        cache: false
+    datasource:
+        url: jdbc:hsqldb:file:/tmp/perculate.db
+        username: sa
+---
+spring:
+    profiles: production
+    datasource:
+        url: jdbc:hsqldb:mem:perculate
+        username: sa

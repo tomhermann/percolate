@@ -19,7 +19,7 @@ apply plugin: 'war'
 
 war {
     baseName = 'perculate.io'
-    version = '0.0.1-SNAPSHOT'
+    version = '1.0.0-SNAPSHOT'
 }
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -38,15 +38,16 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-aop")
-    compile("org.springframework.boot:spring-boot-starter-mobile")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile('javax.inject:javax.inject:1')
-    
-	runtime("com.h2database:h2")
+	
+	runtime("org.hsqldb:hsqldb:2.3.2")
+
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("com.squareup.okhttp:okhttp:2.2.0")
 }
 
 eclipse {
@@ -57,5 +58,5 @@ eclipse {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
+    gradleVersion = '2.2.1'
 }

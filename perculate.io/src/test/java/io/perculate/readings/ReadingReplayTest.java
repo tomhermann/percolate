@@ -19,7 +19,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 /***
- * This posts weight readings to the endpoint every 500ms (same rate the data was collected at)
+ * This posts weight readings to the endpoint.
  * Obviously you need to run the web application, then run this 'test' to insert the data.
  * 
  * It might be quicker for development to load the data into a data.sql file which Spring will 
@@ -32,6 +32,9 @@ import com.squareup.okhttp.Response;
  */
 @Ignore
 public class ReadingReplayTest {
+	/** Data was collected at 500ms intervals */
+	private static final long MILLIS_BETWEEN_POSTS = 250;
+	private static final String ENDPOINT = "http://localhost:8080/readings";
 	private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	private static List<String> readings;
 	private final OkHttpClient client = new OkHttpClient();
@@ -43,14 +46,14 @@ public class ReadingReplayTest {
 
 	@Test
 	public void insertRecordedReadings() throws Exception {
-		for (int i = 0; i < 20; i++) {
-			Response response = executeRequest(readings.get(i));
+		for (String reading : readings) {
+			Response response = postReading(reading);
 			assertTrue(response.isSuccessful());
-			pauseForHalfOfSecond(); 
+			pause(); 
 		}
 	}
 
-	private Response executeRequest(String reading) throws JsonProcessingException, IOException {
+	private Response postReading(String reading) throws JsonProcessingException, IOException {
 		Request request = createPostRequest(createRequest(reading));
 		Response response = client.newCall(request).execute();
 		response.body().close();
@@ -58,7 +61,7 @@ public class ReadingReplayTest {
 	}
 
 	private Request createPostRequest(RequestBody body) {
-		return new Request.Builder().url("http://localhost:8080/readings").post(body).build();
+		return new Request.Builder().url(ENDPOINT).post(body).build();
 	}
 
 	private RequestBody createRequest(String reading) throws JsonProcessingException {
@@ -66,7 +69,7 @@ public class ReadingReplayTest {
 		return RequestBody.create(JSON, json);
 	}
 	
-	private static void pauseForHalfOfSecond() throws InterruptedException {
-		Thread.sleep(500);
+	private static void pause() throws InterruptedException {
+		Thread.sleep(MILLIS_BETWEEN_POSTS);
 	}
 }

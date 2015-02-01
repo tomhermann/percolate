@@ -2,15 +2,23 @@
 <html>
 <head>
     <title>Pot Readings</title>
-    <script src="sockjs-0.3.4.js"></script>
-    <script src="stomp.js"></script>
+    <script src="js/sockjs-0.3.4.js"></script>
+    <script src="js/stomp.js"></script>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/flot/jquery.flot.min.js"></script>
+	<script src="js/flot/jquery.flot.time.min.js"></script>
+	
     <script type="text/javascript">
+    	var options = {
+			xaxis: { mode: "time" }
+		};
+		
+    	var data = [];
         var stompClient = null;
 
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
             document.getElementById('disconnect').disabled = !connected;
-            document.getElementById('response').innerHTML = '';
         }
 
         function connect() {
@@ -21,7 +29,7 @@
                 console.log('Connected: ' + frame);
                 
                 stompClient.subscribe('/topic/readings', function(reading) {
-					showReading(JSON.parse(reading.body).weight);
+					showReading(JSON.parse(reading.body));
                 });
             });
         }
@@ -32,12 +40,10 @@
             console.log("Disconnected");
         }
 
-        function showReading(message) {
-            var response = document.getElementById('response');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(message));
-            response.appendChild(p);
+        function showReading(reading) {
+        	var point = [reading.creationDate, reading.weight]; 
+        	data.push(point);
+			$.plot("#chart", [ data ], options);
         }
     </script>
 </head>
@@ -48,8 +54,9 @@
         <button id="connect" onclick="connect();">Connect</button>
         <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
     </div>
-    <div id="readings">
-        <p id="response"></p>
+    
+    <div id="chart-container" style="width: 1300px; height: 900px;">
+        <p id="chart" style="width: 100%; height: 100%;"></p>
     </div>
 </div>
 </body>

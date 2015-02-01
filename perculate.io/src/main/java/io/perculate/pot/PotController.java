@@ -1,24 +1,15 @@
 package io.perculate.pot;
 
-import io.perculate.readings.ReadingRepository;
-
-import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/pot")
 public class PotController {
-	@Inject
-	private ReadingRepository readingRepository;
-	
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("readings", readingRepository.findAll());
+
+	@RequestMapping(method=RequestMethod.GET)
+	public String index() {
 		return "pot/index";
 	}
-	
 }

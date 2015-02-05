@@ -12,16 +12,16 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 public class ReadingEventHandlerTest {
 	@Mock
 	private SimpMessagingTemplate messagingTemplate;
-	
+
 	@InjectMocks
 	private ReadingEventHandler handler;
-	
+
 	@Test
 	public void whenReadingIsCreatedSendToReadingTopic() throws Exception {
 		Reading reading = new Reading();
 
 		handler.handleAfterCreate(reading);
-	
+
 		verify(messagingTemplate).convertAndSend("/topic/readings", reading);
 	}
 }

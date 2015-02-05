@@ -19,12 +19,13 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 /***
- * This posts weight readings to the endpoint.
- * Obviously you need to run the web application, then run this 'test' to insert the data.
+ * This posts weight readings to the endpoint. Obviously you need to run the web
+ * application, then run this 'test' to insert the data.
  * 
- * It might be quicker for development to load the data into a data.sql file which Spring will 
- * load automatically. I did it this way, so when the websocket is hooked up we'll be able to
- * replay the data and see the webpage respond.
+ * It might be quicker for development to load the data into a data.sql file
+ * which Spring will load automatically. I did it this way, so when the
+ * websocket is hooked up we'll be able to replay the data and see the webpage
+ * respond.
  * 
  * Note: this is ignored so it won't break Jenkins
  * 
@@ -38,7 +39,7 @@ public class ReadingReplayTest {
 	private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 	private static List<String> readings;
 	private final OkHttpClient client = new OkHttpClient();
-	
+
 	@BeforeClass
 	public static void setup() throws Exception {
 		readings = Resources.readLines(ReadingReplayTest.class.getResource("/data.csv"), Charsets.UTF_8);
@@ -49,7 +50,7 @@ public class ReadingReplayTest {
 		for (String reading : readings) {
 			Response response = postReading(reading);
 			assertTrue(response.isSuccessful());
-			pause(); 
+			pause();
 		}
 	}
 
@@ -68,7 +69,7 @@ public class ReadingReplayTest {
 		String json = String.format("{\"weight\":%s}", reading);
 		return RequestBody.create(JSON, json);
 	}
-	
+
 	private static void pause() throws InterruptedException {
 		Thread.sleep(MILLIS_BETWEEN_POSTS);
 	}

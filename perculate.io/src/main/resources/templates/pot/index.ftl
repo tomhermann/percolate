@@ -5,15 +5,15 @@
     <script src="js/sockjs-0.3.4.js"></script>
     <script src="js/stomp.js"></script>
     <script src="js/jquery.min.js"></script>
-	<script src="js/flot/jquery.flot.min.js"></script>
-	<script src="js/flot/jquery.flot.time.min.js"></script>
-	
+    <script src="js/flot/jquery.flot.min.js"></script>
+    <script src="js/flot/jquery.flot.time.min.js"></script>
+    
     <script type="text/javascript">
-    	var options = {
-			xaxis: { mode: "time" }
-		};
-		
-    	var data = [];
+        var options = {
+            xaxis: { mode: "time" }
+        };
+        
+        var data = [];
         var stompClient = null;
 
         function setConnected(connected) {
@@ -29,7 +29,7 @@
                 console.log('Connected: ' + frame);
                 
                 stompClient.subscribe('/topic/readings', function(reading) {
-					showReading(JSON.parse(reading.body));
+                    showReading(JSON.parse(reading.body));
                 });
             });
         }
@@ -41,9 +41,9 @@
         }
 
         function showReading(reading) {
-        	var point = [reading.creationDate, reading.weight]; 
-        	data.push(point);
-			$.plot("#chart", [ data ], options);
+            var point = [reading.creationDate, reading.weight]; 
+            data.push(point);
+            $.plot("#chart", [ data ], options);
         }
     </script>
 </head>

@@ -20,12 +20,12 @@ public class ReadingRepositoryTest {
 
 	@Inject
 	private ReadingRepository readingRepository;
-	
+
 	@Test
 	public void onSavePopulateCreationDate() {
 		Reading entity = new Reading();
 		entity.setWeight(42.0D);
-		
+
 		Reading save = readingRepository.save(entity);
 
 		assertNotNull(save.getCreationDate());

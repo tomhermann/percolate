@@ -14,15 +14,15 @@ import org.springframework.stereotype.Component;
 public class ReadingEventHandler {
 	private static final Logger logger = LoggerFactory.getLogger(ReadingEventHandler.class);
 	private final SimpMessagingTemplate messagingTemplate;
-	
+
 	@Inject
 	public ReadingEventHandler(SimpMessagingTemplate messagingTemplate) {
 		this.messagingTemplate = messagingTemplate;
 	}
-	
+
 	@HandleAfterCreate
 	public void handleAfterCreate(Reading reading) {
 		messagingTemplate.convertAndSend("/topic/readings", reading);
-		logger.debug("Sent -> '/topic/readings': {}" , reading);
+		logger.debug("Sent -> '/topic/readings': {}", reading);
 	}
 }

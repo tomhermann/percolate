@@ -25,16 +25,26 @@
         }
 
         function showReading(reading) {
-            $('#coffee').css('top', readingToPixels(reading));
+            var potTopPx = readingToPixels(reading);
+            if(typeof(potTopPx) == 'number') {
+                $('#coffee').css('top', potTopPx);
+                $('#last-brew').text('');
+            } else {
+                $('#last-brew').text(potTopPx);
+            }
         }
 
         function readingToPixels(reading) {
             var coffeeWeight = reading.weight - EMPTY_POT;
             if(coffeeWeight < 0) {
-                return 200;
+                return 'pot is removed';
             }
 
             var fillPercent = 100 * (coffeeWeight / (FULL_POT - EMPTY_POT));
+
+            if(fillPercent > 100) {
+                return 'dispensing...';
+            }
             return (100 - fillPercent) * 2;
         }
     </script>
@@ -45,7 +55,7 @@
             <div id="background"></div>
             <div id="coffee" style="top:200px"></div>
             <div id="inside"></div>
-            <div id="last-brew"><strong>Last Brewed:</strong> 2:34:56</div>
+            <div id="last-brew"><strong>Last Brewed:</strong></div>
         </div>
     </div>
     <div id="data-view" style="display:none">

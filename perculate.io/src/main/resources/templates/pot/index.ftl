@@ -1,11 +1,13 @@
+<#import "/spring.ftl" as spring />
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Pot Readings</title>
-    <link rel="stylesheet" href="css/coffee.css">
-    <script src="js/sockjs-0.3.4.js"></script>
-    <script src="js/stomp.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="<@spring.url '/css/'/>coffee.css">
+    <script src="<@spring.url '/js/'/>sockjs-0.3.4.js"></script>
+    <script src="<@spring.url '/js/'/>stomp.js"></script>
+    <script src="<@spring.url '/js/'/>jquery.min.js"></script>
 
     <script type="text/javascript">
         var EMPTY_POT = 1.33;

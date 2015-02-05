@@ -1,13 +1,15 @@
+<#import "/spring.ftl" as spring />
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Pot Readings</title>
-    <script src="js/sockjs-0.3.4.js"></script>
-    <script src="js/stomp.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/flot/jquery.flot.min.js"></script>
-    <script src="js/flot/jquery.flot.time.min.js"></script>
-    
+    <script src="<@spring.url '/js/'/>sockjs-0.3.4.js"></script>
+    <script src="<@spring.url '/js/'/>stomp.js"></script>
+    <script src="<@spring.url '/js/'/>jquery.min.js"></script>
+    <script src="<@spring.url '/js/'/>flot/jquery.flot.min.js"></script>
+    <script src="<@spring.url '/js/'/>flot/jquery.flot.time.min.js"></script>
+                                      
     <script type="text/javascript">
         var options = {
             xaxis: { mode: "time" }

@@ -12,4 +12,9 @@ public class PotController {
 	public String index() {
 		return "pot/index";
 	}
+
+    @RequestMapping(value = "/readings", method = RequestMethod.GET)
+    public String readings() {
+        return "pot/readings";
+    }
 }

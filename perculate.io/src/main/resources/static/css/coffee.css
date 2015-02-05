@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#background {
+    background:url("../img/background.png") top left no-repeat;
+    z-index: 9999;
+}
+
+#coffee {
+    background:url("../img/coffee.png") top left no-repeat;
+    z-index: 8888;
+}
+
+#inside {
+    background:url("../img/inside.png") top left no-repeat;
+    z-index: 7777;
+}
+
+#last-brew {
+    top:280px;
+    font-size: 22px;
+    text-align: center;
+    z-index:9999;
+}
+
+#coffee-view div {
+    position: absolute;
+    height:320px;
+    width:240px;
+}
+
+#coffee-view .container {
+    overflow: hidden;
+}
+
+#data-view {
+    background:url("../img/data-background.png") top left no-repeat;
+    height:320px;
+    position: absolute;
+    width:240px;  
+}
+
+#stats {
+    background: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+    border-radius: 3px;
+    padding:10px;
+    margin: 20px;
+}
+
+#stats ul {
+    padding: 0;
+}
+
+#stats ul li {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+#stats ul li label {
+    display: block;
+    font-weight: 700;
+    margin-bottom:4px;
+}
+
+#stats ul li span {
+}

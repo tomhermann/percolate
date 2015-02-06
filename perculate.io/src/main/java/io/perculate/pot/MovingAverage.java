@@ -7,8 +7,8 @@ import com.google.common.collect.EvictingQueue;
 public class MovingAverage {
     private final EvictingQueue<Double> values;
 
-    public MovingAverage(int maxSize) {
-        this.values = EvictingQueue.create(maxSize);
+    public MovingAverage(int maxPoints) {
+        this.values = EvictingQueue.create(maxPoints);
     }
 
     public void addValue(double value) {

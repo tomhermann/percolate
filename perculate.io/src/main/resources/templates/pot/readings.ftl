@@ -15,9 +15,10 @@
             xaxis: { mode: "time" }
         };
         
-        var data = [];
+        var readings = [];
+        var averageReadings = [];
         var stompClient = null;
-
+	
         function connect() {
             var socket = new SockJS('/potws');
             stompClient = Stomp.over(socket);
@@ -25,15 +26,24 @@
                 console.log('Connected: ' + frame);
                 
                 stompClient.subscribe('/topic/readings', function(reading) {
-                    showReading(JSON.parse(reading.body));
+                    updateSeriesWithValue(readings, reading);
+                });
+                
+                stompClient.subscribe('/topic/averageReadings', function(reading) {
+                    updateSeriesWithValue(averageReadings, reading);
                 });
             });
         }
 
-        function showReading(reading) {
-            var point = [reading.creationDate, reading.weight]; 
-            data.push(point);
-            $.plot("#chart", [ data ], options);
+		function updateSeriesWithValue(series, reading) {
+            var parsed = JSON.parse(reading.body);
+            var oldestAllowedReading = parseInt(parsed.creationDate) - (1 * 60 * 1000);
+            series.push([parsed.creationDate, parsed.weight]);
+            drawChart();
+		}
+		
+        function drawChart() {
+            $.plot("#chart", [{ label: "readings",  data: readings}, { label: "mavg(readings)",  data: averageReadings} ], options);
         }
     </script>
 </head>
@@ -47,6 +57,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         connect();
+        drawChart();
     });
 </script>
 </body>

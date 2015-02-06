@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/pot")
 public class PotController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String index() {
-		return "pot/index";
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public String index() {
+        return "pot/index";
+    }
 
     @RequestMapping(value = "/readings", method = RequestMethod.GET)
     public String readings() {

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 public class PerculateWebappApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PerculateWebappApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PerculateWebappApplication.class, args);
+    }
 }

@@ -20,7 +20,7 @@
             var socket = new SockJS('/potws');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
-                stompClient.subscribe('/topic/readings', function(reading) {
+                stompClient.subscribe('/topic/averageReadings', function(reading) {
                     showReading(JSON.parse(reading.body));
                 });
             });

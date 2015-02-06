@@ -14,8 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RepositoryEventHandler(Reading.class)
 public class PotModel {
-    private static final Logger logger = LoggerFactory
-            .getLogger(PotModel.class);
+    private static final Logger logger = LoggerFactory.getLogger(PotModel.class);
     private final MovingAverage movingAverage;
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -42,8 +41,7 @@ public class PotModel {
     }
 
     private void sendAverageReading(Reading reading) {
-        AverageReading avgReading = AverageReading.of(
-                reading.getCreationDate(), getAverageValue());
+        AverageReading avgReading = AverageReading.of(reading.getCreationDate(), getAverageValue());
         messagingTemplate.convertAndSend("/topic/averageReadings", avgReading);
     }
 

@@ -37,6 +37,9 @@
                 minutes = "0" + minutes;
             }
             $('#timestamp').text(" " + hours + ":" + minutes + " ");
+            if(brewTime.reading) {
+                FULL_POT = brewTime.reading.weight;
+            }
         }
 
         function showReading(reading) {

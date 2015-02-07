@@ -1,6 +1,7 @@
 package io.perculate.pot;
 
 import io.perculate.readings.Reading;
+import io.perculate.readings.ReadingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
@@ -16,10 +17,12 @@ public class PotModel {
     private static final Logger logger = LoggerFactory.getLogger(PotModel.class);
     private final MovingAverage movingAverage;
     private final SimpMessagingTemplate messagingTemplate;
+    private final ReadingRepository readingRepository;
     private BrewTime brewTime;
 
     @Inject
-    public PotModel(SimpMessagingTemplate messagingTemplate) {
+    public PotModel(SimpMessagingTemplate messagingTemplate, ReadingRepository readingRepository) {
+        this.readingRepository = readingRepository;
         this.movingAverage = new MovingAverage(25);
         this.messagingTemplate = messagingTemplate;
     }
@@ -39,6 +42,8 @@ public class PotModel {
 
     public void setBrewTime(BrewTime brewTime) {
         this.brewTime = brewTime;
+        Reading latestReading = readingRepository.findTopByOrderByCreationDateDesc();
+        brewTime.setReading(latestReading);
         sendBrewTime();
     }
 

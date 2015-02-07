@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReadingRepository extends CrudRepository<Reading, Long> {
+    Reading findTopByOrderByCreationDateDesc();
 }

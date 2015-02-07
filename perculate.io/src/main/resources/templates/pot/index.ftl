@@ -20,7 +20,7 @@
             var socket = new SockJS('/potws');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
-                stompClient.subscribe('/topic/averageReadings', function(reading) {
+                stompClient.subscribe('/topic/readings', function(reading) {
                     showReading(JSON.parse(reading.body));
                 });
                 stompClient.subscribe('/topic/brewTime', function(brewTime) {
@@ -52,7 +52,7 @@
         }
 
         function readingToPixels(reading) {
-            var coffeeWeight = reading.weight - EMPTY_POT;
+            var coffeeWeight = reading.avgWeight - EMPTY_POT;
             if(coffeeWeight < 0) {
                 return 'pot is removed';
             }

@@ -59,11 +59,7 @@ function connect() {
                         mode: "time", 
                         timeformat: "%H:%M:%S", 
                         minTickSize: [2, "second"], 
-                    }, 
-                    yaxis: { 
-                        min: -1, 
-                        max: 20 
-                    } 
+                    }
                 }, options); 
                 plot.setupGrid();
                 plot.draw(); 

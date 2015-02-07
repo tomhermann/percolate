@@ -14,7 +14,7 @@
 <body>
 
 <div>
-    <div id="chart-container" style="width: 1280px; height: 700px;">
+    <div id="chart-container" style="width: 800px; height: 600px;">
         <p id="chart" style="width: 100%; height: 100%;"></p>
     </div>
 </div>

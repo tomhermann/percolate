@@ -10,7 +10,7 @@
     <script src="<@spring.url '/js/'/>jquery.min.js"></script>
 
     <script type="text/javascript">
-        var EMPTY_POT = 1.33;
+        var EMPTY_POT = 1.55;
         var FULL_POT = 3.4;
 
         var data = [];

@@ -72,42 +72,26 @@
             <div id="background"></div>
             <div id="coffee" style="top:200px"></div>
             <div id="inside"></div>
-            <div id="last-brew"><strong>Last Brewed:</strong><span id="timestamp"> ? </span><button id="brew_now_button">Now</button></div>
+            <div id="last-brew">
+                <span id="brew-time"><strong>Last Brewed:</strong><span id="timestamp"> ? </span></span>
+            </div>
         </div>
     </div>
-    <div id="data-view" style="display:none">
-        <div id="stats">
-            <ul>
-                <li>
-                    <label>Weight:</label>
-                    <span>10000</span>
-                </li>
-                <li>
-                    <label>Time:</label>
-                    <span>12:12:12</span>
-                </li>
-                <li>
-                    <label>Flavor:</label>
-                    <span>Coffee</span>
-                </li>
-                <li>
-                    <label>Location:</label>
-                    <span>6th Floor Secure</span>
-                </li>
-            </ul>
-
-        </div>
-    </div>
+    <span id="brew-button" style="display:none"><button id="brew_now_button">Fresh Coffee</button></span>
     <script>
         $(document).ready(function () {
             connect();
         });
 
-        $("body").click(function () {
-            $("#coffee-view").fadeToggle();
-            $("#data-view").fadeToggle();
+        $("#coffee-view").click(function () {
+            $("#brew-time").toggle();
+            $("#brew-button").toggle();
         });
-
+        $("#brew-button").click(function () {
+            $("#brew-time").toggle();
+            $("#brew-button").toggle();
+        });
+        
         $("#brew_now_button").click(function(e) {
             e.stopPropagation();
             var brewTime = {timestamp: new Date().getTime()};

@@ -46,7 +46,6 @@
             var potTopPx = readingToPixels(reading);
             if(typeof(potTopPx) == 'number') {
                 $('#coffee').css('top', potTopPx);
-                $('#last-brew').text('');
             } else {
                 console.log(potTopPx);
             }

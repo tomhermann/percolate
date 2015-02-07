@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 #background {
@@ -19,7 +20,7 @@ body {
 
 #last-brew {
     top:280px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
     z-index:9999;
 }
@@ -33,36 +34,21 @@ body {
 #coffee-view .container {
     overflow: hidden;
 }
-
-#data-view {
-    background:url("../img/data-background.png") top left no-repeat;
-    height:320px;
+#brew-button button {
     position: absolute;
-    width:240px;  
+    bottom: 50px;
+    width: 150px;
+    height: 40px;
+    z-index: 9999;
+    background: darkslategrey;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    left: 55px;
+    font-size: 16px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,.3);
 }
 
-#stats {
-    background: #fff;
-    box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-    border-radius: 3px;
-    padding:10px;
-    margin: 20px;
-}
-
-#stats ul {
-    padding: 0;
-}
-
-#stats ul li {
-    list-style-type: none;
-    margin: 10px 0;
-}
-
-#stats ul li label {
-    display: block;
-    font-weight: 700;
-    margin-bottom:4px;
-}
-
-#stats ul li span {
+#brew-button button:focus {
+    background: cadetblue;
 }

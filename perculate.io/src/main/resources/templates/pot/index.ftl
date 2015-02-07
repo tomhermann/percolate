@@ -83,13 +83,18 @@
             connect();
         });
 
+        function toggleLastBrewArea() {
+            $("#brew-time").toggle();
+            $("#brew-button").toggle();
+        }
+
         $("#coffee-view").click(function () {
             $("#brew-time").toggle();
             $("#brew-button").toggle();
         });
+
         $("#brew-button").click(function () {
-            $("#brew-time").toggle();
-            $("#brew-button").toggle();
+            toggleLastBrewArea();
         });
         
         $("#brew_now_button").click(function(e) {
@@ -101,6 +106,8 @@
                 data: JSON.stringify(brewTime),
                 contentType: "application/json"
             });
+
+            toggleLastBrewArea();
         });
     </script>
 </body>

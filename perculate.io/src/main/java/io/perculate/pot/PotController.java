@@ -24,9 +24,9 @@ public class PotController {
         return "pot/index";
     }
 
-    @RequestMapping(value = "/readings", method = RequestMethod.GET)
-    public String readings() {
-        return "pot/readings";
+    @RequestMapping(value = "/graph", method = RequestMethod.GET)
+    public String graph() {
+        return "pot/graph";
     }
 
     @RequestMapping(value="/brewed", method = RequestMethod.POST)

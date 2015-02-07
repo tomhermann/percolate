@@ -23,7 +23,7 @@ public class MovingAverage {
     }
 
     private static double sum(Collection<Double> values) {
-        return values.stream().mapToDouble(Double::doubleValue).sum();
+        return values.stream().parallel().mapToDouble(Double::doubleValue).sum();
     }
 
 }

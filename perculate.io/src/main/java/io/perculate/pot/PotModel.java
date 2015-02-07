@@ -15,24 +15,23 @@ import javax.inject.Inject;
 @RepositoryEventHandler(Reading.class)
 public class PotModel {
     private static final Logger logger = LoggerFactory.getLogger(PotModel.class);
-    private final MovingAverage movingAverage;
-    private final SimpMessagingTemplate messagingTemplate;
     private final ReadingRepository readingRepository;
+    private final SimpMessagingTemplate messagingTemplate;
+    private final MovingAverage movingAverage;
     private BrewTime brewTime;
 
     @Inject
     public PotModel(SimpMessagingTemplate messagingTemplate, ReadingRepository readingRepository) {
         this.readingRepository = readingRepository;
-        this.movingAverage = new MovingAverage(25);
         this.messagingTemplate = messagingTemplate;
+        this.movingAverage = new MovingAverage(25);
     }
 
     @HandleAfterCreate
     public void handleReading(Reading reading) {
-        sendReading(reading);
         updateAverage(reading);
-        sendAverageReading(reading);
         sendBrewTime();
+        sendReading(reading);
         logger.info("Handled reading: {}", reading);
     }
 
@@ -62,11 +61,7 @@ public class PotModel {
     }
 
     private void sendReading(Reading reading) {
-        messagingTemplate.convertAndSend("/topic/readings", reading);
-    }
-
-    private void sendAverageReading(Reading reading) {
-        AverageReading avgReading = AverageReading.of(reading.getCreationDate(), getAverageValue());
-        messagingTemplate.convertAndSend("/topic/averageReadings", avgReading);
+        ReadingWithAverage payload = new ReadingWithAverage(reading, getAverageValue());
+        messagingTemplate.convertAndSend("/topic/readings", payload);
     }
 }

@@ -48,7 +48,7 @@
                 $('#coffee').css('top', potTopPx);
                 $('#last-brew').text('');
             } else {
-                $('#last-brew').text(potTopPx);
+                console.log(potTopPx);
             }
         }
 

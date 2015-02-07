@@ -36,7 +36,7 @@
             if(minutes < 10) {
                 minutes = "0" + minutes;
             }
-            $('#timestamp').text(" " + hours + ":" + minutes);
+            $('#timestamp').text(" " + hours + ":" + minutes + " ");
         }
 
         function showReading(reading) {

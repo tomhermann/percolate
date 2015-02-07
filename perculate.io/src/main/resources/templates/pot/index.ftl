@@ -23,7 +23,20 @@
                 stompClient.subscribe('/topic/averageReadings', function(reading) {
                     showReading(JSON.parse(reading.body));
                 });
+                stompClient.subscribe('/topic/brewTime', function(brewTime) {
+                    updateTimestamp(JSON.parse(brewTime.body));
+                });
             });
+        }
+
+        function updateTimestamp(brewTime) {
+            var date = new Date(brewTime.timestamp);
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            if(minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $('#timestamp').text(" " + hours + ":" + minutes);
         }
 
         function showReading(reading) {
@@ -57,7 +70,7 @@
             <div id="background"></div>
             <div id="coffee" style="top:200px"></div>
             <div id="inside"></div>
-            <div id="last-brew"><strong>Last Brewed:</strong></div>
+            <div id="last-brew"><strong>Last Brewed:</strong><span id="timestamp"> ? </span><button id="brew_now_button">Now</button></div>
         </div>
     </div>
     <div id="data-view" style="display:none">
@@ -91,6 +104,17 @@
         $("body").click(function () {
             $("#coffee-view").fadeToggle();
             $("#data-view").fadeToggle();
+        });
+
+        $("#brew_now_button").click(function(e) {
+            e.stopPropagation();
+            var brewTime = {timestamp: new Date().getTime()};
+            $.ajax({
+                type: "POST",
+                url: "/pot/brewed",
+                data: JSON.stringify(brewTime),
+                contentType: "application/json"
+            });
         });
     </script>
 </body>

@@ -1,7 +1,3 @@
-var options = {
-        xaxis: { mode: "time" }
-};
-
 var maxPoints = 100;
 var stompClient = null;
 var plot = null;
@@ -49,7 +45,7 @@ function connect() {
                         timeformat: "%H:%M:%S", 
                         minTickSize: [2, "second"], 
                     }
-                }, options); 
+                }); 
             } else {
             	plot.setData([readings, smoothedReadings]); 
             }

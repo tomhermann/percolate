@@ -24,7 +24,7 @@ public class PotController {
         return "pot/index";
     }
 
-    @RequestMapping(value = "/graph", method = RequestMethod.GET)
+    @RequestMapping(value = "/graph")
     public String graph() {
         return "pot/graph";
     }

@@ -2,14 +2,12 @@ var options = {
         xaxis: { mode: "time" }
 };
 
-var readings = [];
-var averageReadings = [];
 var maxPoints = 100;
 var stompClient = null;
 var plot = null;
 
 var readings = { 
-    label: "Readings", 
+    label: "Readings",
     lines: { 
         show: true 
     }, 
@@ -41,29 +39,32 @@ function connect() {
             readings.data.push([parsed.creationDate, parsed.weight]);
             smoothedReadings.data.push([parsed.creationDate, parsed.avgWeight]);
             
-            while (readings.data.length > maxPoints) { 
-            	readings.data.shift(); 
-            }
-            while (smoothedReadings.data.length > maxPoints) { 
-            	smoothedReadings.data.shift(); 
-            }
-            if(plot) { 
-                // Create the plot if it's not there already 
-                plot.setData([readings, smoothedReadings]); 
-                plot.setupGrid(); 
-                plot.draw();
-            } else if(readings.data.length > 10) { 
-                // Update the plot 
-                plot = $.plot("#chart", [readings, smoothedReadings], { 
+            removeOldPoints(readings.data);
+            removeOldPoints(smoothedReadings.data);
+            
+            if(!plot) {
+            	plot = $.plot("#chart", [readings, smoothedReadings], { 
                     xaxis:{ 
                         mode: "time", 
                         timeformat: "%H:%M:%S", 
                         minTickSize: [2, "second"], 
                     }
                 }, options); 
-                plot.setupGrid();
-                plot.draw(); 
-            } 
+            } else {
+            	plot.setData([readings, smoothedReadings]); 
+            }
+            redrawPlot();
         });
     });
+}
+
+function redrawPlot() {
+    plot.setupGrid();
+    plot.draw(); 
+}
+
+function removeOldPoints(data) {
+	while(data.length > maxPoints) {
+		data.shift(); 
+	}
 }

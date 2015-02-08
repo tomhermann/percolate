@@ -5,9 +5,8 @@ import io.perculate.readings.Reading;
 import java.util.Date;
 
 public class ReadingWithAverage {
-
-    private Reading reading;
-    private Double averageValue;
+    private final Reading reading;
+    private final Double averageValue;
 
     public ReadingWithAverage(Reading reading, Double averageValue) {
         this.reading = reading;
@@ -25,5 +24,4 @@ public class ReadingWithAverage {
     public Double getAvgWeight() {
         return averageValue;
     }
-
 }
